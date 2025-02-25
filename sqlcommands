@@ -159,3 +159,74 @@ mysql> select * from student_info;
 |    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
 +------+-------+--------+------+----------+-------+-------+
 2 rows in set (0.00 sec)
+
+
+
+<!-- DQL => insights -->
+<!-- select =>  -->
+
+<!-- Data Descriptaion  => 1 -->
+<!-- Key  -->
+1 : primary key 
+columns  => distinct values => 
+not null
+
+23
+1 neha
+2, pooja
+23 rahul
+null tina
+
+<!-- notnull distinct  -->
+mysql> create table marks (
+    -> id int primary key,
+    -> maths int, science int );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe marks;
++---------+------+------+-----+---------+-------+
+| Field   | Type | Null | Key | Default | Extra |
++---------+------+------+-----+---------+-------+
+| id      | int  | NO   | PRI | NULL    |       |
+| maths   | int  | YES  |     | NULL    |       |
+| science | int  | YES  |     | NULL    |       |
++---------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into marks values (1, 23, 45);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marks (id, science) values (1, 45);
+ERROR 1062 (23000): Duplicate entry '1' for key 'marks.PRIMARY'
+mysql> insert into marks (id, science) values (4, 45);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from marks;
++----+-------+---------+
+| id | maths | science |
++----+-------+---------+
+|  1 |    23 |      45 |
+|  4 |  NULL |      45 |
++----+-------+---------+
+2 rows in set (0.00 sec)
+
+
+<!-- unique => distinct values =
+one null value is allowed -->
+
+<!-- not null => values are required -->
+<!-- default  -->
+mysql> create table marks2 (
+    -> id int primary key,
+    -> maths int default 0, science int not null );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> describe marks2;
++---------+------+------+-----+---------+-------+
+| Field   | Type | Null | Key | Default | Extra |
++---------+------+------+-----+---------+-------+
+| id      | int  | NO   | PRI | NULL    |       |
+| maths   | int  | YES  |     | 0       |       |
+| science | int  | NO   |     | NULL    |       |
++---------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
