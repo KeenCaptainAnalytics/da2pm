@@ -1,0 +1,118 @@
+database  
+
+database  = > student
+lots of tables
+
+MySQL
+
+1: data definition language
+(working on structure of table)
+creation tables, alter , drop,  = > working on tables
+
+2:data manipulation languauge
+data manipulation within the table
+update insert delete 
+
+3: data Query Language (DQL)
+(get insight of the stored data)
+select
+
+4: Data control Language(DCL)
+grant 
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| student            |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.04 sec)
+mysql> use student;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| user_info         |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> describe user_info;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | YES  |     | NULL    |       |
+| name  | varchar(100) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+<!-- Data Defnition Language -->
+creation of table
+=================
+mysql> create table student_info (
+    -> id int,
+    -> name varchar(50),
+    -> rollno int,
+    -> age int,
+    -> imageUrl varchar(100),
+    -> marks int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> describe student_info;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | YES  |     | NULL    |       |
+| name     | varchar(50)  | YES  |     | NULL    |       |
+| rollno   | int          | YES  |     | NULL    |       |
+| age      | int          | YES  |     | NULL    |       |
+| imageUrl | varchar(100) | YES  |     | NULL    |       |
+| marks    | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+<!-- Alter => change the description  -->
+
+mysql> alter table student_info add email varchar(100);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student_info;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | YES  |     | NULL    |       |
+| name     | varchar(50)  | YES  |     | NULL    |       |
+| rollno   | int          | YES  |     | NULL    |       |
+| age      | int          | YES  |     | NULL    |       |
+| imageUrl | varchar(100) | YES  |     | NULL    |       |
+| marks    | int          | YES  |     | NULL    |       |
+| email    | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+<!-- table deletion = > drop -->
+mysql> drop table user_info;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| student_info      |
++-------------------+
+1 row in set (0.00 sec)
+<!-- table content delete = > truncate -->
+mysql> truncate table user_info;
+Query OK, 0 rows affected (0.04 sec)
+
+
+
+
