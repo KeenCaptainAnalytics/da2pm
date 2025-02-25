@@ -115,4 +115,47 @@ Query OK, 0 rows affected (0.04 sec)
 
 
 
+<!-- DML (Data manipulation language) -->
+<!-- rows=> records -->
 
+<!-- insert -->
+
+mysql> insert into student_info (id, name, rollno,marks) values (
+1, 'neha', 23, 234);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student_info;
++------+------+--------+------+----------+-------+-------+
+| id   | name | rollno | age  | imageUrl | marks | email |
++------+------+--------+------+----------+-------+-------+
+|    1 | neha |     23 | NULL | NULL     |   234 | NULL  |
++------+------+--------+------+----------+-------+-------+
+1 row in set (0.00 sec)
+
+<!-- row change => update -->
+mysql> update student_info set age = 21;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from student_info;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    1 | neha  |     23 |   21 | NULL     |   234 | NULL  |
+|    2 | Pooja |     21 |   21 | NULL     |   214 | NULL  |
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+3 rows in set (0.00 sec)
+
+<!-- delete = > only specified rows are deleted
+ -->mysql> delete from student_info where rollno = 21;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student_info;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    1 | neha  |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+2 rows in set (0.00 sec)
