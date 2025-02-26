@@ -1,0 +1,150 @@
+DQL (Data Query)
+
+select 
+
+>>select  all columns and rows in a particular table
+
+mysql> select *  from student_info;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    1 | neha  |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+2 rows in set (0.04 sec)
+
+
+ select id, name , rollno,marks from student_info;
++------+--------+--------+-------+
+| id   | name   | rollno | marks |
++------+--------+--------+-------+
+|    1 | neha   |     23 |   234 |
+|    3 | rahul  |     29 |    99 |
+|    4 | rakul  |     31 |   342 |
+|    6 | tarun  |     32 |   145 |
+|    7 | priya  |     35 |   167 |
+|    8 | tina   |     38 |   367 |
+|    9 | pritam |     39 |   327 |
++------+--------+--------+-------+
+7 rows in set (0.00 sec)
+
+
+<!-- where clause => to filter out rows -->
+select id , name, marks from student_info where rollno > 30;
++------+--------+-------+
+| id   | name   | marks |
++------+--------+-------+
+|    4 | rakul  |   342 |
+|    6 | tarun  |   145 |
+|    7 | priya  |   167 |
+|    8 | tina   |   367 |
+|    9 | pritam |   327 |
++------+--------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select id, name, marks from student_info where marks > 100 and marks <300;
++------+-------+-------+
+| id   | name  | marks |
++------+-------+-------+
+|    1 | neha  |   234 |
+|    6 | tarun |   145 |
+|    7 | priya |   167 |
++------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_info where marks > 200 or rollno<35;
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    1 | neha   |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul  |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul  |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun  |     32 |   21 | NULL     |   145 | NULL  |
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+6 rows in set (0.00 sec)
+
+<!-- like operator for string matching -->
+mysql> select * from student_info where name like "r%";
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul |     31 |   21 | NULL     |   342 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where name like "t%";
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
+|    8 | tina  |     38 |   21 | NULL     |   367 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where name like "%t%";
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    6 | tarun  |     32 |   21 | NULL     |   145 | NULL  |
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_info where name like "%a%";
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    1 | neha   |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul  |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul  |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun  |     32 |   21 | NULL     |   145 | NULL  |
+|    7 | priya  |     35 |   21 | NULL     |   167 | NULL  |
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student_info where name like "___a%";
++------+------+--------+------+----------+-------+-------+
+| id   | name | rollno | age  | imageUrl | marks | email |
++------+------+--------+------+----------+-------+-------+
+|    1 | neha |     23 |   21 | NULL     |   234 | NULL  |
+|    8 | tina |     38 |   21 | NULL     |   367 | NULL  |
++------+------+--------+------+----------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where name like "_a%";
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_info where name in ("rahul","tarun","tina");
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
+|    8 | tina  |     38 |   21 | NULL     |   367 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
