@@ -137,7 +137,164 @@ mysql> select * from student_info where name in ("rahul","tarun","tina");
 +------+-------+--------+------+----------+-------+-------+
 3 rows in set (0.00 sec)
 
+mysql> select * from student_info where name in ("rahul","tarun","tina");
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
+|    8 | tina  |     38 |   21 | NULL     |   367 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+3 rows in set (0.00 sec)
 
+mysql> select * from student_info where rollno> 35;
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where rollno < 35;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    1 | neha  |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_info where rollno <= 35;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    1 | neha  |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
+|    7 | priya |     35 |   21 | NULL     |   167 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student_info where rollno != 35;
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    1 | neha   |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul  |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul  |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun  |     32 |   21 | NULL     |   145 | NULL  |
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student_info where rollno == 35;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== 35' at line 1
+mysql> select * from student_info where rollno = 35;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    7 | priya |     35 |   21 | NULL     |   167 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_info where rollno  < 35 and marks >100;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    1 | neha  |     23 |   21 | NULL     |   234 | NULL  |
+|    4 | rakul |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_info where rollno  < 35 or marks >100;
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    1 | neha   |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul  |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul  |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun  |     32 |   21 | NULL     |   145 | NULL  |
+|    7 | priya  |     35 |   21 | NULL     |   167 | NULL  |
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student_info where rollno  < 35 or marks <100;
++------+-------+--------+------+----------+-------+-------+
+| id   | name  | rollno | age  | imageUrl | marks | email |
++------+-------+--------+------+----------+-------+-------+
+|    1 | neha  |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun |     32 |   21 | NULL     |   145 | NULL  |
++------+-------+--------+------+----------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_info where not marks< 35
+    -> ;
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    1 | neha   |     23 |   21 | NULL     |   234 | NULL  |
+|    3 | rahul  |     29 |   21 | NULL     |    99 | NULL  |
+|    4 | rakul  |     31 |   21 | NULL     |   342 | NULL  |
+|    6 | tarun  |     32 |   21 | NULL     |   145 | NULL  |
+|    7 | priya  |     35 |   21 | NULL     |   167 | NULL  |
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student_info where not rollno < 35;
++------+--------+--------+------+----------+-------+-------+
+| id   | name   | rollno | age  | imageUrl | marks | email |
++------+--------+--------+------+----------+-------+-------+
+|    7 | priya  |     35 |   21 | NULL     |   167 | NULL  |
+|    8 | tina   |     38 |   21 | NULL     |   367 | NULL  |
+|    9 | pritam |     39 |   21 | NULL     |   327 | NULL  |
++------+--------+--------+------+----------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_info;
++------+---------+--------+------+----------+-------+----------------+
+| id   | name    | rollno | age  | imageUrl | marks | email          |
++------+---------+--------+------+----------+-------+----------------+
+|    1 | neha    |     23 |   21 | NULL     |   234 | NULL           |
+|    3 | rahul   |     29 |   21 | NULL     |    99 | NULL           |
+|    4 | rakul   |     31 |   21 | NULL     |   342 | NULL           |
+|    6 | tarun   |     32 |   21 | NULL     |   145 | NULL           |
+|    7 | priya   |     35 |   21 | NULL     |   167 | NULL           |
+|    8 | tina    |     38 |   21 | NULL     |   367 | NULL           |
+|    9 | pritam  |     39 |   21 | NULL     |   327 | NULL           |
+|   10 | Gautam  |     40 |   23 | NULL     |   342 | abc@gmail.com  |
+|   11 | Madhuri |     41 |   22 | NULL     |   312 | abc2@gmail.com |
++------+---------+--------+------+----------+-------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from student_info where email is not null;
++------+---------+--------+------+----------+-------+----------------+
+| id   | name    | rollno | age  | imageUrl | marks | email          |
++------+---------+--------+------+----------+-------+----------------+
+|   10 | Gautam  |     40 |   23 | NULL     |   342 | abc@gmail.com  |
+|   11 | Madhuri |     41 |   22 | NULL     |   312 | abc2@gmail.com |
++------+---------+--------+------+----------+-------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student_info where age <> 21 ;
++------+---------+--------+------+----------+-------+----------------+
+| id   | name    | rollno | age  | imageUrl | marks | email          |
++------+---------+--------+------+----------+-------+----------------+
+|   10 | Gautam  |     40 |   23 | NULL     |   342 | abc@gmail.com  |
+|   11 | Madhuri |     41 |   22 | NULL     |   312 | abc2@gmail.com |
++------+---------+--------+------+----------+-------+----------------+
+2 rows in set (0.00 sec)
 
 
 
