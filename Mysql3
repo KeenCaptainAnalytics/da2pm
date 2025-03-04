@@ -1,0 +1,100 @@
+mysql> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| student            |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.02 sec)
+
+mysql> use student;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| department        |
+| department2       |
+| department3       |
+| marks             |
+| marks2            |
+| student_info      |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> describe student_info;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | YES  |     | NULL    |       |
+| name     | varchar(50)  | YES  |     | NULL    |       |
+| rollno   | int          | YES  |     | NULL    |       |
+| age      | int          | YES  |     | NULL    |       |
+| imageUrl | varchar(100) | YES  |     | NULL    |       |
+| marks    | int          | YES  |     | NULL    |       |
+| email    | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> create table info (
+    -> id bigint,
+    -> rollno smallint,
+    -> smallno tinyint,
+    -> marks decimal(2,3),
+    -> fees float,
+    -> pass bit,
+    ->
+    -> name varchar(50),
+    -> std char(3),
+    -> description text,
+    ->
+    -> time timestamp,
+    -> ISpass boolean,
+    -> image blob,
+    -> res json)
+    -> ;
+ERROR 1427 (42000): For float(M,D), double(M,D) or decimal(M,D), M must be >= D (column 'marks').
+mysql> create table info (
+    -> id bigint,
+    -> std char(3),
+    -> time timestamp,
+    -> image blob,
+    -> res json);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> describe info;
++-------+-----------+------+-----+---------+-------+
+| Field | Type      | Null | Key | Default | Extra |
++-------+-----------+------+-----+---------+-------+
+| id    | bigint    | YES  |     | NULL    |       |
+| std   | char(3)   | YES  |     | NULL    |       |
+| time  | timestamp | YES  |     | NULL    |       |
+| image | blob      | YES  |     | NULL    |       |
+| res   | json      | YES  |     | NULL    |       |
++-------+-----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table info2( id int primary key, name varchar(50) not null,email varchar(50) unique,isPass boolean default true, age int check (age>18) defaul
+t 19 );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe info2;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| email  | varchar(50) | YES  | UNI | NULL    |       |
+| isPass | tinyint(1)  | YES  |     | 1       |       |
+| age    | int         | YES  |     | 19      |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
