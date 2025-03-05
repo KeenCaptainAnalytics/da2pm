@@ -1,0 +1,131 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| student            |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.02 sec)
+
+mysql> use student;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| department        |
+| department2       |
+| department3       |
+| info              |
+| info2             |
+| marks             |
+| marks2            |
+| student_info      |
++-------------------+
+8 rows in set (0.01 sec)
+
+mysql> describe info2;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| email  | varchar(50) | YES  | UNI | NULL    |       |
+| isPass | tinyint(1)  | YES  |     | 1       |       |
+| age    | int         | YES  |     | 19      |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table info2 add phone char(10);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe info2;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(50) | NO   |     | NULL    |       |
+| email  | varchar(50) | YES  | UNI | NULL    |       |
+| isPass | tinyint(1)  | YES  |     | 1       |       |
+| age    | int         | YES  |     | 19      |       |
+| phone  | char(10)    | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table info2 modify phone char(10) not null default "9999999999";
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe info2;
++--------+-------------+------+-----+------------+-------+
+| Field  | Type        | Null | Key | Default    | Extra |
++--------+-------------+------+-----+------------+-------+
+| id     | int         | NO   | PRI | NULL       |       |
+| name   | varchar(50) | NO   |     | NULL       |       |
+| email  | varchar(50) | YES  | UNI | NULL       |       |
+| isPass | tinyint(1)  | YES  |     | 1          |       |
+| age    | int         | YES  |     | 19         |       |
+| phone  | char(10)    | NO   |     | 9999999999 |       |
++--------+-------------+------+-----+------------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table info2 drop column isPass;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe info2;
++-------+-------------+------+-----+------------+-------+
+| Field | Type        | Null | Key | Default    | Extra |
++-------+-------------+------+-----+------------+-------+
+| id    | int         | NO   | PRI | NULL       |       |
+| name  | varchar(50) | NO   |     | NULL       |       |
+| email | varchar(50) | YES  | UNI | NULL       |       |
+| age   | int         | YES  |     | 19         |       |
+| phone | char(10)    | NO   |     | 9999999999 |       |
++-------+-------------+------+-----+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table info2 rename phone to number;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to number' at line 1
+mysql> alter table info2 rename to info_of_st;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe info2;
+ERROR 1146 (42S02): Table 'student.info2' doesn't exist
+mysql> describe info_of_st;
++-------+-------------+------+-----+------------+-------+
+| Field | Type        | Null | Key | Default    | Extra |
++-------+-------------+------+-----+------------+-------+
+| id    | int         | NO   | PRI | NULL       |       |
+| name  | varchar(50) | NO   |     | NULL       |       |
+| email | varchar(50) | YES  | UNI | NULL       |       |
+| age   | int         | YES  |     | 19         |       |
+| phone | char(10)    | NO   |     | 9999999999 |       |
++-------+-------------+------+-----+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table info_of_st modify phone to number;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to number' at line 1
+mysql> alter table info2 rename column phone to phone_number;
+ERROR 1146 (42S02): Table 'student.info2' doesn't exist
+mysql> alter table info_of_st rename column phone to phone_number;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe info_of_st;
++--------------+-------------+------+-----+------------+-------+
+| Field        | Type        | Null | Key | Default    | Extra |
++--------------+-------------+------+-----+------------+-------+
+| id           | int         | NO   | PRI | NULL       |       |
+| name         | varchar(50) | NO   |     | NULL       |       |
+| email        | varchar(50) | YES  | UNI | NULL       |       |
+| age          | int         | YES  |     | 19         |       |
+| phone_number | char(10)    | NO   |     | 9999999999 |       |
++--------------+-------------+------+-----+------------+-------+
+5 rows in set (0.00 sec)
