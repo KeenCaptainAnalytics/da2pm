@@ -1,3 +1,4 @@
+
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -129,3 +130,98 @@ mysql> describe info_of_st;
 | phone_number | char(10)    | NO   |     | 9999999999 |       |
 +--------------+-------------+------+-----+------------+-------+
 5 rows in set (0.00 sec)
+
+mysql> insert into info_of_st (id, name) values (78, "kavya"), (67, "nita"),(90, "tina");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from info_of_st;
++----+-------+-------+------+--------------+
+| id | name  | email | age  | phone_number |
++----+-------+-------+------+--------------+
+| 67 | nita  | NULL  |   19 | 9999999999   |
+| 78 | kavya | NULL  |   19 | 9999999999   |
+| 90 | tina  | NULL  |   19 | 9999999999   |
++----+-------+-------+------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into info_of_st values (788,"priya","98989898898");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into info_of_st values (788,"priya","ghfghfg@gm",67,"98989898898");
+ERROR 1406 (22001): Data too long for column 'phone_number' at row 1
+mysql> insert into info_of_st values (788,"priya","ghfghfg@gm",67,"9898989888");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from info_of_st;
++-----+-------+------------+------+--------------+
+| id  | name  | email      | age  | phone_number |
++-----+-------+------------+------+--------------+
+|  67 | nita  | NULL       |   19 | 9999999999   |
+|  78 | kavya | NULL       |   19 | 9999999999   |
+|  90 | tina  | NULL       |   19 | 9999999999   |
+| 788 | priya | ghfghfg@gm |   67 | 9898989888   |
++-----+-------+------------+------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update info_of_st set age = 27
+    -> where name="tina" and age=19;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from info_of_st;
++-----+-------+------------+------+--------------+
+| id  | name  | email      | age  | phone_number |
++-----+-------+------------+------+--------------+
+|  67 | nita  | NULL       |   19 | 9999999999   |
+|  78 | kavya | NULL       |   19 | 9999999999   |
+|  90 | tina  | NULL       |   27 | 9999999999   |
+| 788 | priya | ghfghfg@gm |   67 | 9898989888   |
++-----+-------+------------+------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update info_of_st set age = 37
+    -> where age=19;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from info_of_st;
++-----+-------+------------+------+--------------+
+| id  | name  | email      | age  | phone_number |
++-----+-------+------------+------+--------------+
+|  67 | nita  | NULL       |   37 | 9999999999   |
+|  78 | kavya | NULL       |   37 | 9999999999   |
+|  90 | tina  | NULL       |   27 | 9999999999   |
+| 788 | priya | ghfghfg@gm |   67 | 9898989888   |
++-----+-------+------------+------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update info_of_st set email="nita@gmail.com" , phone_number = "9897966785"
+    -> where id = 67;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from info_of_st;
++-----+-------+----------------+------+--------------+
+| id  | name  | email          | age  | phone_number |
++-----+-------+----------------+------+--------------+
+|  67 | nita  | nita@gmail.com |   37 | 9897966785   |
+|  78 | kavya | NULL           |   37 | 9999999999   |
+|  90 | tina  | NULL           |   27 | 9999999999   |
+| 788 | priya | ghfghfg@gm     |   67 | 9898989888   |
++-----+-------+----------------+------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update info_of_st set age = age+2;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from info_of_st;
++-----+-------+----------------+------+--------------+
+| id  | name  | email          | age  | phone_number |
++-----+-------+----------------+------+--------------+
+|  67 | nita  | nita@gmail.com |   39 | 9897966785   |
+|  78 | kavya | NULL           |   39 | 9999999999   |
+|  90 | tina  | NULL           |   29 | 9999999999   |
+| 788 | priya | ghfghfg@gm     |   69 | 9898989888   |
++-----+-------+----------------+------+--------------+
+4 rows in set (0.00 sec)
