@@ -1,3 +1,18 @@
+er password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.41 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use students;
+ERROR 1049 (42000): Unknown database 'students'
 mysql> use student;
 Database changed
 mysql> show tables;
@@ -314,3 +329,99 @@ mysql> select age from info_of_st where email is not null group by age having ag
 |   69 |
 +------+
 1 row in set (0.00 sec)
+
+mysql> create table address (
+    -> id int , country varchar(50), state varchar(50))
+    -> ;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe address;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | YES  |     | NULL    |       |
+| country | varchar(50) | YES  |     | NULL    |       |
+| state   | varchar(50) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into address values (1, "india" , "delhi"), (2, "india", "noida"), (3,"india", "agra");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from address;
++------+---------+-------+
+| id   | country | state |
++------+---------+-------+
+|    1 | india   | delhi |
+|    2 | india   | noida |
+|    3 | india   | agra  |
++------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table  students (
+    -> id int, name varchar(50),
+    -> addressid int,
+    -> foreign key (addressid) references address(id));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'students_ibfk_1' in the referenced table 'address'
+mysql> alter table address id primary key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id primary key' at line 1
+mysql> alter table address id int primary key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id int primary key' at line 1
+mysql> alter table address set id int primary key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set id int primary key' at line 1
+mysql> create table address (
+    -> create table  students (;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create table  students (' at line 2
+ERROR:
+No query specified
+
+mysql> create table address2 (
+    -> id int primary key , country varchar(50), state varchar(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into address2 values (1, "india" , "delhi"), (2, "india", "noida"), (3,"india", "agra");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table  students (
+    -> id int, name varchar(50),
+    -> addressid int,
+    -> foreign key (addressid) references address2(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from address2;
++----+---------+-------+
+| id | country | state |
++----+---------+-------+
+|  1 | india   | delhi |
+|  2 | india   | noida |
+|  3 | india   | agra  |
++----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> describe students;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | YES  |     | NULL    |       |
+| name      | varchar(50) | YES  |     | NULL    |       |
+| addressid | int         | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into students values (101, "reena", 1), (201, "pooja", 2),(202, "shweta", 1);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++------+--------+-----------+
+| id   | name   | addressid |
++------+--------+-----------+
+|  101 | reena  |         1 |
+|  201 | pooja  |         2 |
+|  202 | shweta |         1 |
++------+--------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>
